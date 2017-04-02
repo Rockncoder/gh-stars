@@ -41,7 +41,7 @@
       "trace"
     ],
     "no-construct": true,
-    "no-debugger": true,
+    "no-debugger": false,
     "no-duplicate-variable": true,
     "no-empty": false,
     "no-empty-interface": true,

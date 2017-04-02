@@ -1,0 +1,9 @@
+<p>
+  results-list works!
+</p>
+<ng-template ngFor let-item [ngForOf]="items" let-i="index">
+  <li>
+    <img src="{{item.owner.avatar_url}}" height="64"/>
+    {{item.full_name}}, {{item.stargazers_count}}
+  </li>
+</ng-template>
