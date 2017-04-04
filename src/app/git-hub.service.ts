@@ -19,8 +19,9 @@ export class GitHubService {
   constructor(private http: Http) {
   }
 
-  get(): Observable<any> {
-    return this.http.get(this.url, this.options)
+  get(theUrl?: string): Observable<any> {
+    const url = theUrl ? theUrl : this.url;
+    return this.http.get(url, this.options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -29,7 +30,7 @@ export class GitHubService {
     const body = res.json();
     const linkHeader = res.headers.get('link');
     const links = linkHeader ? linkHeader.split(',') : [];
-    return {body, links } || {incomplete_results: false, items: [], total_count: 0, links};
+    return {body, links} || {incomplete_results: false, items: [], total_count: 0, links};
   }
 
   private handleError(error: Response | any) {

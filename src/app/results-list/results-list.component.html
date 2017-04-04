@@ -1,9 +1,16 @@
-<p>
-  results-list works!
-</p>
-<ng-template ngFor let-item [ngForOf]="items" let-i="index">
-  <li>
-    <img src="{{item.owner.avatar_url}}" height="64"/>
-    {{item.full_name}}, {{item.stargazers_count}}
-  </li>
-</ng-template>
+<div>
+  <h2>Total Results: {{total | number }}</h2>
+  <div class="button-row">
+    <button md-raised-button (click)="previousPage()" [disabled]="!previousUrl">Previous</button>
+    <button md-raised-button (click)="nextPage()" [disabled]="!nextUrl">Next</button>
+  </div>
+  <md-list>
+    <md-list-item *ngFor="let item of items">
+      <img md-list-avatar md-line src="{{item.owner.avatar_url}}"/>
+      <h2 md-line> {{item.full_name}}</h2>
+      <span md-line> <md-icon>star</md-icon>{{item.stargazers_count | byter: false}}, {{item.size | byter}}, {{item.language}}</span>
+      <p md-line>{{item.description}}</p>
+      <span md-line>{{item.updated_at | amTimeAgo}}</span>
+    </md-list-item>
+  </md-list>
+</div>

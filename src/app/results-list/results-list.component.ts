@@ -10,6 +10,9 @@ import {GitHubService} from '../git-hub.service';
 export class ResultsListComponent implements OnInit {
   errorMessage = '';
   items = [];
+  nextUrl = null;
+  previousUrl = null;
+  total = 0;
 
   constructor(private gitHub: GitHubService) {
   }
@@ -19,16 +22,38 @@ export class ResultsListComponent implements OnInit {
   }
 
   get() {
-    this.gitHub.get().subscribe(
+    this.callService(null);
+  }
+
+  nextPage() {
+    console.log(`nextPage(): ${this.nextUrl}`);
+    this.callService(this.nextUrl);
+  }
+
+  previousPage() {
+    console.log(`previousPage(): ${this.previousUrl}`);
+    this.callService(this.previousUrl);
+  }
+
+  private callService(url: string) {
+    this.gitHub.get(url).subscribe(
       data => {
         this.items = data.body.items;
-        console.log(`total-count = ${data.total_count}, incomplete = ${data.incomplete_results}`);
+        this.total = data.body.   total_count;
+        // console.log(`total-count = ${data.total_count}, incomplete = ${data.incomplete_results}`);
         data.links.forEach(link => {
-          console.log(`next: ${link}`);
+          const [urlLink, urlType] = link.replace('<', '').replace('>', '').replace(' ', '').split(';');
+
+          if (urlType.indexOf('next') > -1) {
+            this.nextUrl = urlLink;
+          } else if (urlType.indexOf('prev') > -1) {
+            this.previousUrl = urlLink;
+          }
+          console.log(`next: ${urlType} link: ${urlLink}`);
         });
-        data.body.items.map(item => {
-          console.log(`${item.full_name}, ${item.stargazers_count}`);
-        });
+        // data.body.items.map(item => {
+        //   console.log(`${item.full_name}, ${item.stargazers_count}`);
+        // });
       },
       error => {
         this.errorMessage = <any>error;

@@ -19,4 +19,9 @@ Other topics I teach:
 We have affordable weekend boot-camps on these subjects year-round in sunny Southern California. We can also arrange on-site training at your offices.
 Reach out to me on Twitter @therockncoder or email at rockncoder@gmail.com. Be sure to check out [my YouTube channel](https://www.youtube.com/rockncoder).
 
+
+
+https://github.com/urish/angular2-moment
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.

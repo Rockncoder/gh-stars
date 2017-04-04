@@ -1,5 +1,11 @@
-<h1>
-  {{title}}
-  <button md-mini-fab><md-icon>check</md-icon></button>
-  <app-results-list></app-results-list>
-</h1>
+<nav>
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <h1>{{title}}</h1>
+</nav>
+<md-menu #menu="mdMenu">
+  <a md-menu-item routerLink="/about">About</a>
+  <a md-menu-item routerLink="/results">GitHub</a>
+</md-menu>
+<router-outlet></router-outlet>
