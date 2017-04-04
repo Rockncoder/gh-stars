@@ -8,10 +8,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GitHubService {
-  // private url = 'https://api.github.com/search/code?q=addClass+in:file+language:js+repo:jquery/jquery';
-  // private url = 'https://api.github.com/search/repositories?q=topic:ruby+topic:rails';
-  // private url = 'https://api.github.com/search/repositories?q=frogger+language:assembly&sort=stars&order=desc';
-  private baseUrl = 'https://api.github.com/search/';
+  // private baseUrl = 'https://api.github.com/search/';
   private url = 'https://api.github.com/search/repositories?q=stars:>1&sort=stars&order=desc';
   private headers = new Headers({'Accept': 'application/vnd.github.mercy-preview+json'});
   private options = new RequestOptions({headers: this.headers});
@@ -19,6 +16,7 @@ export class GitHubService {
   constructor(private http: Http) {
   }
 
+  // note: An observable is return from this method
   get(theUrl?: string): Observable<any> {
     const url = theUrl ? theUrl : this.url;
     return this.http.get(url, this.options)
@@ -28,6 +26,7 @@ export class GitHubService {
 
   private extractData(res: Response) {
     const body = res.json();
+    // let's get the link from the header
     const linkHeader = res.headers.get('link');
     const links = linkHeader ? linkHeader.split(',') : [];
     return {body, links} || {incomplete_results: false, items: [], total_count: 0, links};
@@ -46,5 +45,4 @@ export class GitHubService {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
-
 }

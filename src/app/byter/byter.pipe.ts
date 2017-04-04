@@ -11,10 +11,14 @@ export class ByterPipe implements PipeTransform {
   // }
 
   transform(value: number, useBinary?: boolean): string {
-    // none of these values change so they should be constants
+    // let's use the Decimal pipe programmatically to help us out
     const dp = new DecimalPipe('en-US');
+    // this is a demo of the power of destructuring
+    // we have two objects with the same 3 properties
     const binary = {kb: 1024, mb: 1048576, gb: 1073741824};
     const digital = {kb: 1000, mb: 1000000, gb: 1000000000};
+    // We use a ternary statement to choose which object
+    // then assign the properties to variables based on their property names
     const {kb, mb, gb} = (useBinary) ? binary : digital;
 
     // these values change
