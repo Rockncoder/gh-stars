@@ -5,7 +5,6 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-
 @Injectable()
 export class GitHubService {
   // private baseUrl = 'https://api.github.com/search/';

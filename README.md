@@ -20,7 +20,8 @@ We have affordable weekend boot-camps on these subjects year-round in sunny Sout
 Reach out to me on Twitter @therockncoder or email at rockncoder@gmail.com. Be sure to check out [my YouTube channel](https://www.youtube.com/rockncoder).
 
 
-_**If you find this repo useful please star it! It is an easy thing to do, makes me smile, and makes me want to continue coding into the night.**_ :smile:
+_**If you find this repo useful please star it! It is an easy thing to do, makes me smile, and makes me want to continue coding into the night.**_ 
+:smile:
 
 ---
 
