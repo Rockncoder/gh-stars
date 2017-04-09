@@ -6,22 +6,21 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {GitHubService} from './git-hub.service';
-import 'hammerjs';
 import {ResultsListComponent} from './results-list/results-list.component';
-import 'moment';
 import {MomentModule} from 'angular2-moment';
-import {ByterPipe} from './byter/byter.pipe';
+import {Convert2KPipe} from './convert2k/convert2k.pipe';
 import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppMaterialModule} from './app-material.module';
-
+import 'hammerjs';
+import 'moment';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultsListComponent,
-    ByterPipe,
+    Convert2KPipe,
     AboutComponent
   ],
   imports: [

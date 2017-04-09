@@ -8,7 +8,7 @@
     <md-list-item *ngFor="let item of items">
       <img md-list-avatar md-line src="{{item.owner.avatar_url}}"/>
       <h2 md-line> {{item.full_name}}</h2>
-      <span md-line> <md-icon>star</md-icon>{{item.stargazers_count | byter: false}}, {{item.size | byter}}, {{item.language}}</span>
+      <span md-line> <md-icon>star</md-icon>{{item.stargazers_count | convert2k: false}}, {{item.size | convert2k}}, {{item.language}}</span>
       <p md-line>{{item.description}}</p>
       <span md-line>{{item.updated_at | amTimeAgo}}</span>
     </md-list-item>

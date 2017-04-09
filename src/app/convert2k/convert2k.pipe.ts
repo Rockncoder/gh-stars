@@ -2,9 +2,9 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 
 @Pipe({
-  name: 'byter'
+  name: 'convert2k'
 })
-export class ByterPipe implements PipeTransform {
+export class Convert2KPipe implements PipeTransform {
 
   // transform(value: any, args?: any): any {
   //   return null;
