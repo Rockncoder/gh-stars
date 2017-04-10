@@ -5,10 +5,10 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+// https://developer.github.com/v3/search/
+
 @Injectable()
 export class GitHubService {
-  // private baseUrl = 'https://api.github.com/search/';
-  private url = 'https://api.github.com/search/repositories?q=stars:>1&sort=stars&order=desc';
   private headers = new Headers({'Accept': 'application/vnd.github.mercy-preview+json'});
   private options = new RequestOptions({headers: this.headers});
 
@@ -16,8 +16,16 @@ export class GitHubService {
   }
 
   // note: An observable is return from this method
-  get(theUrl?: string): Observable<any> {
-    const url = theUrl ? theUrl : this.url;
+  get(theUrl?: string, language?: any, topic: string = ''): Observable<any> {
+    const lng = (language && language.language) ? `+language:${language.language}` : '';
+    const tp = (topic) ? `+topic:${topic}` : '';
+    const url = theUrl ? theUrl : `https://api.github.com/search/repositories?q=stars:>1${lng}${tp}&sort=stars&order=desc`;
+    console.log(`topic = ${tp}, language = ${lng}`);
+
+    if (language && theUrl) {
+      console.log(`language = ${language.language}`);
+    }
+
     return this.http.get(url, this.options)
       .map(this.extractData)
       .catch(this.handleError);

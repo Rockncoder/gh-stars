@@ -13,6 +13,16 @@ export class ResultsListComponent implements OnInit {
   nextUrl = null;
   previousUrl = null;
   total = 0;
+  topic = '';
+  languages = [
+    {description: 'Any', selected: true, language: ''},
+    {description: 'C++', selected: false, language: 'c%2B%2B'},
+    {description: 'C#', selected: false, language: 'c%23'},
+    {description: 'JS', selected: false, language: 'javascript'},
+    {description: 'Java', selected: false, language: 'java'},
+    {description: 'Swift', selected: false, language: 'swift'},
+  ];
+  specificLanguage;
 
   constructor(private gitHub: GitHubService) {
   }
@@ -35,12 +45,24 @@ export class ResultsListComponent implements OnInit {
     this.callService(this.previousUrl);
   }
 
-  private callService(url: string) {
-    this.gitHub.get(url).subscribe(
+  changeLanguage() {
+    this.callService(null, this.specificLanguage);
+  }
+
+  search() {
+    console.log(`topic = ${this.topic}`);
+    this.callService(null, this.specificLanguage, this.topic);
+  }
+
+  clearTopic() {
+    this.topic = '';
+  }
+
+  private callService(url: string, language?: any, topic: string = '') {
+    this.gitHub.get(url, language, topic).subscribe(
       data => {
         this.items = data.body.items;
-        this.total = data.body.   total_count;
-        // console.log(`total-count = ${data.total_count}, incomplete = ${data.incomplete_results}`);
+        this.total = data.body.total_count;
         data.links.forEach(link => {
           const [urlLink, urlType] = link.replace('<', '').replace('>', '').replace(' ', '').split(';');
 
@@ -51,9 +73,6 @@ export class ResultsListComponent implements OnInit {
           }
           console.log(`next: ${urlType} link: ${urlLink}`);
         });
-        // data.body.items.map(item => {
-        //   console.log(`${item.full_name}, ${item.stargazers_count}`);
-        // });
       },
       error => {
         this.errorMessage = <any>error;

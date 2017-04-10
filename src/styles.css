@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+
+body {
+    font-family: Roboto, sans-serif;
+    font-size: 90%;
+}
+
 nav {
     background-color: #673ab7;
 }

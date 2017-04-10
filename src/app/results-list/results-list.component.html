@@ -1,5 +1,17 @@
 <div>
   <h2>Total Results: {{total | number }}</h2>
+  <div>
+    <md-input-container class="">
+      <input mdInput placeholder="Topic" value="topic" [(ngModel)]="topic" >
+    </md-input-container>
+    <button md-raised-button (click)="search()">Search</button>
+    <button md-raised-button (click)="clearTopic()"><md-icon>clear</md-icon></button>
+  </div>
+  <md-radio-group class="example-radio-group" [(ngModel)]="specificLanguage" (change)="changeLanguage()">
+    <md-radio-button class="example-radio-button" *ngFor="let language of languages" [value]="language">
+      {{language.description}}
+    </md-radio-button>
+  </md-radio-group>
   <div class="button-row">
     <button md-raised-button (click)="previousPage()" [disabled]="!previousUrl">Previous</button>
     <button md-raised-button (click)="nextPage()" [disabled]="!nextUrl">Next</button>
