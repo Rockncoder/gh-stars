@@ -20,7 +20,7 @@ export class GitHubService {
     const lng = (language && language.language) ? `+language:${language.language}` : '';
     const tp = (topic) ? `+topic:${topic}` : '';
     const url = theUrl ? theUrl : `https://api.github.com/search/repositories?q=stars:>1${lng}${tp}&sort=stars&order=desc`;
-    console.log(`topic = ${tp}, language = ${lng}`);
+    // console.log(`topic = ${tp}, language = ${lng}`);
 
     if (language && theUrl) {
       console.log(`language = ${language.language}`);

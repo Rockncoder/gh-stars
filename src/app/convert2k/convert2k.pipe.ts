@@ -35,6 +35,6 @@ export class Convert2KPipe implements PipeTransform {
       divisor = kb;
       suffix = 'KB';
     }
-    return value > 1000 ? dp.transform((value / divisor), '1.0-1') + suffix : value.toLocaleString();
+    return value >= kb ? dp.transform((value / divisor), '1.0-1') + suffix : value.toLocaleString();
   }
 }

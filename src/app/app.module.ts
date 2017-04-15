@@ -11,9 +11,10 @@ import {MomentModule} from 'angular2-moment';
 import {Convert2KPipe} from './convert2k/convert2k.pipe';
 import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AppMaterialModule} from './app-material.module';
+import {AppMaterialModule} from './app-material/app-material.module';
 import 'hammerjs';
 import 'moment';
+import { BackColorDirective } from './back-color/back-color.directive';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import 'moment';
     AppComponent,
     ResultsListComponent,
     Convert2KPipe,
-    AboutComponent
+    AboutComponent,
+    BackColorDirective
   ],
   imports: [
     BrowserModule,
